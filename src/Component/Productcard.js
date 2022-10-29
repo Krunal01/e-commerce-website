@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import React from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
@@ -51,6 +52,17 @@ function Productcard({ product, fetchProduct }) {
       >
         Delete
       </button>
+      <Link
+        to={`/edit-product/${product.id}`}
+        className="bg-orange-500 px-4 py-2 ml-4 rounded-md text-white cursor-pointe hover:bg-red-700"
+        id="btn"
+        // onClick={(e) => {
+        //   e.preventDefault();
+        //   deleteProduct(product.id);
+        // }}
+      >
+        Edit
+      </Link>
     </div>
   );
 }

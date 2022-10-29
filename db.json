@@ -1,3 +1,13 @@
 {
-  "products": []
+  "products": [
+    {
+      "id": 1,
+      "name": "pants",
+      "href": "#",
+      "imageSrc": "#",
+      "imageAlt": "#",
+      "price": "100",
+      "color": "nsfn"
+    }
+  ]
 }
