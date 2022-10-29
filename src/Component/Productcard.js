@@ -42,27 +42,32 @@ function Productcard({ product, fetchProduct }) {
           <p className="text-sm font-medium text-gray-900">{product.price}</p>
         </div>
       </div>
-      <button
-        className="bg-red-500 px-4 py-2 rounded-md text-white cursor-pointe hover:bg-red-700"
-        id="btn"
-        onClick={(e) => {
-          e.preventDefault();
-          deleteProduct(product.id);
-        }}
-      >
-        Delete
+      <div className="flex justify-between ">
+        <button
+          className="bg-red-500 px-4 py-2 rounded-md text-white cursor-pointe hover:bg-red-700  "
+          id="btn"
+          onClick={(e) => {
+            e.preventDefault();
+            deleteProduct(product.id);
+          }}
+        >
+          Delete
+        </button>
+        <Link
+          to={`/edit-product/${product.id}`}
+          className="bg-orange-500 px-4 py-2  rounded-md text-white cursor-pointe hover:bg-red-700 "
+          id="btn"
+          // onClick={(e) => {
+          //   e.preventDefault();
+          //   deleteProduct(product.id);
+          // }}
+        >
+          Edit
+        </Link>
+      </div>
+      <button className="bg-yellow-500 px-4 py-2 rounded-md text-white cursor-pointe hover:bg-red-700  ">
+        Add to Cart
       </button>
-      <Link
-        to={`/edit-product/${product.id}`}
-        className="bg-orange-500 px-4 py-2 ml-4 rounded-md text-white cursor-pointe hover:bg-red-700"
-        id="btn"
-        // onClick={(e) => {
-        //   e.preventDefault();
-        //   deleteProduct(product.id);
-        // }}
-      >
-        Edit
-      </Link>
     </div>
   );
 }

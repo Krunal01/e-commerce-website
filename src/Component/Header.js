@@ -1,8 +1,8 @@
-import { Fragment } from "react";
+import { Fragment, useState } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { Link } from "react-router-dom";
 // import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
-
+import Cart from "./Cart";
 const user = {
   name: "Tom Cook",
   email: "tom@example.com",
@@ -12,12 +12,13 @@ const user = {
 const navigation = [
   { name: "Dashboard", href: "/", current: true },
   { name: "Add Product", href: "/add-product", current: false },
-  // { name: "Projects", href: "#", current: false },
+  // { name: "Add to cart", href: "/cart", current: false },
   // { name: "Calendar", href: "#", current: false },
   // { name: "Reports", href: "#", current: false },
 ];
 const userNavigation = [
   { name: "Your Profile", href: "#" },
+  // { name: "Add to cart", href: "#" },
   { name: "Settings", href: "#" },
   { name: "Sign out", href: "#" },
 ];
@@ -27,6 +28,8 @@ function classNames(...classes) {
 }
 
 export default function Header() {
+  const [open, setOpen] = useState(false);
+
   return (
     <>
       {/*
@@ -37,19 +40,17 @@ export default function Header() {
         <body class="h-full">
         ```
       */}
+
       <div className="min-h-full">
+        <Cart open={open} setOpen={setOpen} />
         <Disclosure as="nav" className="bg-gray-800">
           {({ open }) => (
             <>
               <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                 <div className="flex h-16 items-center justify-between">
                   <div className="flex items-center">
-                    <div className="flex-shrink-0">
-                      <img
-                        className="h-8 w-8"
-                        src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500"
-                        alt="Your Company"
-                      />
+                    <div className="flex-shrink-0 text-white font-mono">
+                      Amazon
                     </div>
                     <div className="hidden md:block">
                       <div className="ml-10 flex items-baseline space-x-4">
@@ -68,6 +69,14 @@ export default function Header() {
                             {item.name}
                           </Link>
                         ))}
+                        <button
+                          className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                          onClick={(e) => {
+                            setOpen(true);
+                          }}
+                        >
+                          Cart
+                        </button>
                       </div>
                     </div>
                   </div>
@@ -78,7 +87,6 @@ export default function Header() {
                         className="rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
                       >
                         <span className="sr-only">View notifications</span>
-                        "B"
                       </button>
 
                       {/* Profile dropdown */}
@@ -194,23 +202,6 @@ export default function Header() {
             </>
           )}
         </Disclosure>
-
-        <header className="bg-white shadow">
-          <div className="mx-auto max-w-7xl py-6 px-4 sm:px-6 lg:px-8">
-            <h1 className="text-3xl font-bold tracking-tight text-gray-900">
-              Amazon
-            </h1>
-          </div>
-        </header>
-        <main>
-          {/* <div className="mx-auto max-w-7xl py-6 sm:px-6 lg:px-8">
-            {/* Replace with your content */}
-          {/* <div className="px-4 py-6 sm:px-0"> */}
-          {/* <div className="h-96 rounded-lg border-4 border-dashed border-gray-200" /> */}
-          {/* </div> */}
-          {/* /End replace */}
-          {/* </div> */}
-        </main>
       </div>
     </>
   );
