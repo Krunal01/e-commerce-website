@@ -4,6 +4,7 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import Card from "../Component/Card";
 import Header from "../Component/Header";
+import { Navigate, useNavigate } from "react-router-dom";
 
 function Addproduct() {
   const [productdata, setProductdata] = useState({
@@ -14,14 +15,16 @@ function Addproduct() {
     price: "",
     color: "",
   });
-  console.log(productdata);
+  // console.log(productdata);
+  const navigate = useNavigate();
   async function addProducts() {
     try {
+      // throw new Error();
       const response = await axios.post(
         "http://localhost:3001/products",
         productdata
       );
-      console.log(response);
+      // console.log(response);
       toast.success("Product has been added succesfully.");
       setProductdata({
         name: "",
@@ -31,8 +34,10 @@ function Addproduct() {
         price: "",
         color: "",
       });
+      navigate("/");
     } catch (error) {
-      console.log(error);
+      // console.log(error);
+      toast.error("Products could not added something went wrong");
     }
   }
   return (
